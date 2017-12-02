@@ -24,14 +24,16 @@
          <input type = "submit" value = "Upload File" />
       </form>
       
-      <form action = "Announcements" method = "post">
-      	<p>Announcements</p>
-     	Place: <input type = "text" name="venue"/>
+      <form action = "announcement.html" method = "post">
+      	<p>Post Announcement</p>
      	Date: <input type = "date" name="date"/>
      	Time: <input type ="time" name = "time"/>
      	Description: <input type = "description" name ="description"/>
+     	<input type ="submit"name="submit">
       
       </form>
+      
+      <h4></h4>
 	
 
 <body>
