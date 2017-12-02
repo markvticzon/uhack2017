@@ -23,9 +23,11 @@
       </form>
       
       <form action = "Announcements" method = "post">
+      	<p>Announcements</p>
      	Place: <input type = "text" name="venue"/>
      	Date: <input type = "date" name="date"/>
      	Time: <input type ="time" name = "time"/>
+     	Description: <input type = "description" name ="description"/>
       
       </form>
 	
