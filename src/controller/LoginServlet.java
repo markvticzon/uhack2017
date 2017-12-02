@@ -1,9 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -37,20 +34,18 @@ public class LoginServlet extends HttpServlet {
 		sb.setName(request.getParameter("studentIdName"));
 		sb.setPassword(request.getParameter("password"));
 		
-		if(login(sb.getName(), sb.getPassword())){
+		if(login(sb.getName(), sb.getPassword()) == true){
 			HttpSession studentSession = request.getSession();
 			studentSession.setAttribute("student", sb);
-
-			URL url = new URL("https://api-uat.unionbankph.com/partners/sb/convergent/v1/oauth2/authorize");
-			URLConnection con = url.openConnection();
-			InputStream is = con.getInputStream();
+			
+			System.out.println("LOGGED");
 			
 			request.setAttribute("ss", studentSession);
 			request.getRequestDispatcher("dashboard.jsp").forward(request,response);
 			
 		}else{
 			response.sendRedirect("loginfailed.html");
-			
+			System.out.println("FAILED");
 			
 		}
 		
@@ -61,26 +56,32 @@ public class LoginServlet extends HttpServlet {
 		boolean isLogged = false;
 		
 		try {
+			
 			Class.forName("com.mysql.jdbc.Driver");
+			
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/uhack", "root", "password");
 			pstmt = con.prepareStatement("SELECT * FROM students");
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				if(user.equals(rs.getString("studentNo")) || user.equals(rs.getString("email")) && password.equals(rs.getString("password"))){
+				if((user.equals(rs.getString("studentNo")) || user.equals(rs.getString("email"))) && password.equals(rs.getString("password"))){
 					isLogged = true;
+					break;
+					
 				}else{
 					isLogged = false;
 				}
 			}
 			
 		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 			System.err.println("LoginServlet - login: class not found");
 			
 		} catch (SQLException e) {
 			System.err.println("LoginServlet - login: SQL exception");
 		}
 		
+		System.out.println(isLogged);
 		return isLogged;
 	}
 }
