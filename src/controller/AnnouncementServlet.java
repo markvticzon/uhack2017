@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import java.sql.*;
+import model.Announcements;
 
 /**
  * Servlet implementation class AnnouncementServlet
@@ -36,28 +38,27 @@ public class AnnouncementServlet extends HttpServlet {
 		}else {
 			//query here :)
 			try{
+				Announcements an = new Announcements();
 				Class.forName("com.mysql.jdbc.Driver");
-				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/uhack", "root", "password");
+				Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/uhack", "root", "password");
 				String sql = "insert into announcements "
-						+ "(announcements, date, time, description)" + "values(?, ?, ?, ?, ?)";
+						+ "(date, time, description)" + "values(?, ?, ?, ?)";
 				
-				PreparedStatement stmt = con.prepareStatement(sql);
+				PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql);
 				
-				stmt.setString(1, ub.getUsername());
-				stmt.setString(2, name);
-				stmt.setString(3, ub.getEmail());
-				stmt.setString(4, ub.getMobileNumber());
-				stmt.setString(5, ub.getPassword());
-				stmt.setString(6, ub.getVehicleType());
-				stmt.setString(7, vehicle);
-				stmt.setString(8, ub.getPlateNo());
+				
+				
+				stmt.setString(1, an.getDate());
+				stmt.setString(2, an.getTime());
+				stmt.setString(3, an.getDescription());
+	
 				stmt.executeUpdate();
 				
-				response.sendRedirect("registersuccess.html");
+				response.sendRedirect("dashboard.jsp");
 		
 			}catch(Exception e){
-				response.sendRedirect("errorsignup.html");
-				System.out.println("error in signup");
+				response.sendRedirect("errorannouncement.html");
+				System.out.println("error in creating announcement");
 				e.printStackTrace();
 			}
 			response.sendRedirect("dashboard.jsp");
