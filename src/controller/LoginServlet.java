@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import model.StudentBean;
 
@@ -28,27 +29,28 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		StudentBean sb = new StudentBean();
-		
-		sb.setName(request.getParameter("studentIdName"));
-		sb.setPassword(request.getParameter("password"));
-		
-		if(login(sb.getName(), sb.getPassword()) == true){
-			HttpSession studentSession = request.getSession();
-			studentSession.setAttribute("student", sb);
+
+			StudentBean sb = new StudentBean();
 			
-			System.out.println("LOGGED");
+			sb.setName(request.getParameter("studentIdName"));
+			sb.setPassword(request.getParameter("password"));	
 			
-			request.setAttribute("ss", studentSession);
-			request.getRequestDispatcher("dashboard.jsp").forward(request,response);
-			
-		}else{
-			response.sendRedirect("loginfailed.html");
-			System.out.println("FAILED");
-			
-		}
-		
+			if(login(sb.getName(), sb.getPassword())){
+
+				HttpSession studentSession = request.getSession();
+				studentSession.setAttribute("student", sb.getName());
+				
+				System.out.println("LOGGED");
+				
+				request.setAttribute("ss", studentSession);
+				request.getRequestDispatcher("dashboard.jsp").forward(request,response);
+				
+			}else{
+				response.sendRedirect("loginfailed.html");
+				System.out.println("FAILED");
+
+			}
+
 	}
 	
 	boolean login(String user, String password){
@@ -67,7 +69,7 @@ public class LoginServlet extends HttpServlet {
 				if((user.equals(rs.getString("studentNo")) || user.equals(rs.getString("email"))) && password.equals(rs.getString("password"))){
 					isLogged = true;
 					break;
-					
+
 				}else{
 					isLogged = false;
 				}

@@ -10,7 +10,7 @@
 			Class.forName("com.mysql.jdbc.Driver");
 		
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "password");
-			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM students");
+			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM ");
 			ResultSet rs = pstmt.executeQuery();
 		
 		} catch (ClassNotFoundException e) {

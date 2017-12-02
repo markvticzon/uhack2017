@@ -1,12 +1,20 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>UHACL=K</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
 </head>
 <body>
+	
+	<%
+	
+		if(request.getSession(false) == null){
+	
+	%>
 
-	<form action = "login.html">
+	<form action = "login.html" method = "POST">
 	
 		<table>
 		
@@ -28,6 +36,13 @@
 		</table>
 	
 	</form>
+	
+	<%
+		}else{
+			response.sendRedirect("dashboard.html");
+		}
+
+	%>
 
 </body>
 </html>
