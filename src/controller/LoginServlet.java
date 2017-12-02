@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		StudentBean sb = new StudentBean();
-		if(request.getSession()==null){
+		
 			
 		
 		sb.setName(request.getParameter("studentIdName"));
@@ -49,9 +49,7 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("loginfailed.html");
 			
 		}
-		}else {
-			response.sendRedirect("dashboard.jsp");
-		}
+		
 	}
 	
 	boolean login(String user, String password){
