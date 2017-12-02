@@ -50,6 +50,8 @@ public class LoginServlet extends HttpServlet {
 			
 		}else{
 			response.sendRedirect("loginfailed.html");
+			
+			
 		}
 		
 	}
