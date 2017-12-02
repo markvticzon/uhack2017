@@ -22,7 +22,7 @@
          <input type = "submit" value = "Upload File" />
       </form>
       
-      <form action = "Announcements" method = "post">
+      <form action = "announcement.html" method = "post">
       	<p>Post Announcement</p>
      	Date: <input type = "date" name="date"/>
      	Time: <input type ="time" name = "time"/>
