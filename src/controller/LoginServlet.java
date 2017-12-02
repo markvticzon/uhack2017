@@ -40,13 +40,14 @@ public class LoginServlet extends HttpServlet {
 		
 		if(login(sb.getName(), sb.getPassword())){
 			HttpSession studentSession = request.getSession();
-			studentSession.setAttribute("student", sb);
+			studentSession.setAttribute("student", sb.getName());
 			
 			request.setAttribute("ss", studentSession);
 			request.getRequestDispatcher("dashboard.jsp").forward(request,response);
 			
 		}else{
 			response.sendRedirect("loginfailed.html");
+			
 		}
 		}else {
 			response.sendRedirect("dashboard.jsp");
