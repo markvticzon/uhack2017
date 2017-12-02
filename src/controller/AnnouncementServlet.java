@@ -15,9 +15,6 @@ import com.mysql.jdbc.PreparedStatement;
 import java.sql.*;
 import model.Announcements;
 
-/**
- * Servlet implementation class AnnouncementServlet
- */
 @WebServlet("/announcement.html")
 public class AnnouncementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,12 +24,12 @@ public class AnnouncementServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession sessionUser  = (HttpSession) request.getSession(false).getAttribute("student");
-		System.out.println(sessionUser);
+		
+		Cookie foundCookie = CookieHelper.
+		
+		if()
+		
 		if(sessionUser == null){
 			response.sendRedirect("index.jsp");
 		}else {

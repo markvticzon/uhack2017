@@ -29,7 +29,7 @@
 		<tr>
 	<%
 	
-	String studentName = request.getSession().getAttribute("ss").toString();
+	String studentName = request.getSession().getAttribute("student").toString();
 	String serviceBought;
 	double price;
 	String merchantName;
