@@ -11,10 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-/**
- * Servlet implementation class DashboardServlet
- */
 @WebServlet("/dashboard.html")
 public class DashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,6 +23,7 @@ public class DashboardServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+
 		HttpSession sessionUser  = (HttpSession) request.getSession(false).getAttribute("student");
 		System.out.println(sessionUser);
 		if(sessionUser == null){
@@ -34,7 +31,16 @@ public class DashboardServlet extends HttpServlet {
 		}else {
 			
 			response.sendRedirect("dashboard.jsp");
+
+		if(request.getSession(false) == null){
+			
+			
+			
+		}else{
+			response.sendRedirect("index.jsp");
+
 		}
-	}
+		}
+		}
 
 }
