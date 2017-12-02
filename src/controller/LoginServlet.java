@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import model.StudentBean;
 
@@ -42,8 +41,8 @@ public class LoginServlet extends HttpServlet {
 				
 				System.out.println("LOGGED");
 				
-				request.setAttribute("ss", studentSession);
-				request.getRequestDispatcher("dashboard.jsp").forward(request,response);
+				request.setAttribute("ss", sb.getName());
+				request.getRequestDispatcher("dashboard.html").forward(request,response);
 				
 			}else{
 				response.sendRedirect("loginfailed.html");

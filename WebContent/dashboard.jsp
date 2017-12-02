@@ -10,7 +10,9 @@
 
 	<!-- Annoucnements retrieval -->
 	<!-- Admin -->
-	<a href='logout.html'>Logout</a>
+	
+	<form action = "logout.html"><input type = "submit" value = "Logout"></form>
+	
 	 <h3>Upload poster:</h3>
       Select a file to upload: <br />
       <form action = "Announcements" method = "post"
