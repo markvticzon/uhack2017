@@ -15,16 +15,19 @@
       Select a file to upload: <br />
       <form action = "Announcements" method = "post"
          enctype = "multipart/form-data">
-         <input type = "text" name=""/>
+         
+         <!-- File upload -->
          <input type = "file" name = "file" size = "50" />
          <br />
          <input type = "submit" value = "Upload File" />
       </form>
       
-      <!--  <form action =  
-     
+      <form action = "Announcements" method = "post">
+     	Place: <input type = "text" name="venue"/>
+     	Date: <input type = "date" name="date"/>
+     	Time: <input type ="time" name = "time"/>
       
-      </form>-->
+      </form>
 	
 
 <body>

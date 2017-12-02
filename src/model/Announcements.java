@@ -5,11 +5,18 @@ public class Announcements {
 	String date;
 	String time;
 	String description;
+	String file;
 	
 	
 	
 	public String getDate() {
 		return date;
+	}
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
 	}
 	public void setDate(String date) {
 		this.date = date;
