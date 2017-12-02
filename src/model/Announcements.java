@@ -1,16 +1,13 @@
 package model;
 
-public class EventsBean {
+public class Announcements {
 	
-	String venue;
 	String date;
 	String time;
-	public String getVenue() {
-		return venue;
-	}
-	public void setVenue(String venue) {
-		this.venue = venue;
-	}
+	String description;
+	
+	
+	
 	public String getDate() {
 		return date;
 	}
@@ -23,7 +20,12 @@ public class EventsBean {
 	public void setTime(String time) {
 		this.time = time;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 	
-
 }

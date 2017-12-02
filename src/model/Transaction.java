@@ -1,6 +1,6 @@
 package model;
 
-public class Webinar {
+public class Transaction {
 	
 	String registrationKey;
 	String date;
