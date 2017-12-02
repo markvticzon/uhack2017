@@ -30,9 +30,13 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		StudentBean sb = new StudentBean();
+		if(request.getSession()==null){
+			
 		
 		sb.setName(request.getParameter("studentIdName"));
 		sb.setPassword(request.getParameter("password"));
+		
+		
 		
 		if(login(sb.getName(), sb.getPassword())){
 			HttpSession studentSession = request.getSession();
@@ -44,7 +48,9 @@ public class LoginServlet extends HttpServlet {
 		}else{
 			response.sendRedirect("loginfailed.html");
 		}
-		
+		}else {
+			response.sendRedirect("dashboard.jsp");
+		}
 	}
 	
 	boolean login(String user, String password){
@@ -53,13 +59,14 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/uhack", "root", "password");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/uhack", "root", "");
 			pstmt = con.prepareStatement("SELECT * FROM students");
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()){
 				if(user.equals(rs.getString("studentNo")) || user.equals(rs.getString("email")) && password.equals(rs.getString("password"))){
 					isLogged = true;
+					break;
 				}else{
 					isLogged = false;
 				}

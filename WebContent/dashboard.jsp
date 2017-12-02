@@ -10,14 +10,21 @@
 
 	<!-- Annoucnements retrieval -->
 	<!-- Admin -->
+	<a href='logout.html'>Logout</a>
 	 <h3>Upload poster:</h3>
       Select a file to upload: <br />
       <form action = "Announcements" method = "post"
          enctype = "multipart/form-data">
+         <input type = "text" name=""/>
          <input type = "file" name = "file" size = "50" />
          <br />
          <input type = "submit" value = "Upload File" />
       </form>
+      
+      <!--  <form action =  
+     
+      
+      </form>-->
 	
 
 <body>
