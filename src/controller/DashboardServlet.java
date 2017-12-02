@@ -27,10 +27,12 @@ public class DashboardServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession sessionUser  = request.getSession(false);
+		HttpSession sessionUser  = (HttpSession) request.getSession(false).getAttribute("student");
+		System.out.println(sessionUser);
 		if(sessionUser == null){
 			response.sendRedirect("index.html");
 		}else {
+			
 			response.sendRedirect("dashboard.jsp");
 		}
 	}
