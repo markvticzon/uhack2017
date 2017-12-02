@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -37,6 +40,10 @@ public class LoginServlet extends HttpServlet {
 		if(login(sb.getName(), sb.getPassword())){
 			HttpSession studentSession = request.getSession();
 			studentSession.setAttribute("student", sb);
+
+			URL url = new URL("https://api-uat.unionbankph.com/partners/sb/convergent/v1/oauth2/authorize");
+			URLConnection con = url.openConnection();
+			InputStream is = con.getInputStream();
 			
 			request.setAttribute("ss", studentSession);
 			request.getRequestDispatcher("dashboard.jsp").forward(request,response);
